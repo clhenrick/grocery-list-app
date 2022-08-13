@@ -1,5 +1,7 @@
 import React from "react";
+import styles from "./List.module.css";
 import { IDatum } from "./lib/data";
+import { ListItem } from "./ListItem";
 
 interface Props {
 	data: IDatum[] | null;
@@ -14,17 +16,12 @@ export function List({ data }: Props) {
 	function renderItem({ item }:IDatum) {
 		const id = sanitize(item);
 		return (
-			<div key={id}>
-				<input id={id} type="checkbox" />{' '}
-				<label htmlFor={id}>
-					{item}
-				</label>
-			</div>
-		)
+			<ListItem key={id} {...{id, item }} />
+		);
 	}
 
 	return (
-		<div>
+		<div className={styles.List}>
 			{ data?.filter(d => d.include).map(renderItem) }
 		</div>
 	);
