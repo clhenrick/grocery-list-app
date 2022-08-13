@@ -30,7 +30,13 @@ export async function fetchSheetData() : Promise<[DSVParsedArray<IDatum>|null, E
 
 export function groupData(data: IDatum[]): DataGrouped[] {
 	const grouped = group(data, d => d.category);
-	return Array.from(grouped, (([category, items]) => ({ category, items })));
+	return Array.from(grouped, (([category, items]) => ({ category, items: sortItems(items) })));
+}
+
+function sortItems(items: IDatum[]) {
+	return items.slice().sort((a, b) => {
+		return a.item.localeCompare(b.item);
+	})
 }
 
 function parseText(text:string) : DSVParsedArray<IDatum> {
