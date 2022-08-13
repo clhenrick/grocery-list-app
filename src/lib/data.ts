@@ -1,4 +1,5 @@
 import { csvParse, DSVRowString, DSVParsedArray } from "d3-dsv"
+import { group } from "d3-array";
 
 // https://docs.google.com/spreadsheets/d/1YMBkCqCi31xiVpWtSsw97YFMo0HwVE6N6hX3nv2fF-w/edit#gid=0
 const key = "1YMBkCqCi31xiVpWtSsw97YFMo0HwVE6N6hX3nv2fF-w";
@@ -11,6 +12,11 @@ export interface IDatum {
 	include: boolean;
 }
 
+export interface DataGrouped {
+	category: string;
+	items: IDatum[];
+}
+
 export async function fetchSheetData() : Promise<[DSVParsedArray<IDatum>|null, Error|null]> {
 	try {
 		const res = await window.fetch(sheetUrl);
@@ -20,6 +26,11 @@ export async function fetchSheetData() : Promise<[DSVParsedArray<IDatum>|null, E
 	} catch (error: unknown) {
 		return [null, new Error("Something went wrong.")];
 	}
+}
+
+export function groupData(data: IDatum[]): DataGrouped[] {
+	const grouped = group(data, d => d.category);
+	return Array.from(grouped, (([category, items]) => ({ category, items })));
 }
 
 function parseText(text:string) : DSVParsedArray<IDatum> {
