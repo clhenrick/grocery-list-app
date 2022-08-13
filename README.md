@@ -1,4 +1,28 @@
-# Getting Started with Create React App
+# Grocery List App
+
+A simple mobile friendly app to take while grocery shopping, powered by Google Sheets & ReactJS.
+
+## Customizing for Your Own Use
+
+To personalize this app for yourself follow these steps after forking this repository:
+
+1. Create a Google Sheet with the fields "items", "category", and "include". Make sure to set the values of the "include" field to be a checkbox which evaluates to "TRUE" or "FALSE" when checked or unchecked. This determines whether or not an item will display in the app.
+
+2. After adding your grocery items and categories as rows, make the sheet public by clicking the "Share" button in the upper right and then setting "General Access" to "Anyone with the link".
+
+3. Copy the sheet's unique key in the URL, it's the part that comes after `https://docs.google.com/spreadsheets/d/` and before the next slash (`/`).
+
+4. Update the `.env` file so that this unique key is the value of `REACT_APP_SHEET_KEY`. You won't need to modify the value of `REACT_APP_SHEET_NAME` unless you named the sheet in your Google Sheet something different (it defaults to "Sheet1").
+
+5. After running the app locally and verifying that it works, do `npm run deploy` to create a production build and add those build artifacts to a `gh-pages` branch in git / Github.
+
+6. In the Github repository settings make sure that Pages is enabled from the `gh-pages` branch.
+
+The app should now be viewable on `https://username.github.io/grocery-list-app/`. Enjoy!
+
+---
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
