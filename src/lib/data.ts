@@ -1,9 +1,9 @@
 import { csvParse, DSVRowString, DSVParsedArray } from "d3-dsv"
 import { group } from "d3-array";
 
-// https://docs.google.com/spreadsheets/d/1YMBkCqCi31xiVpWtSsw97YFMo0HwVE6N6hX3nv2fF-w/edit#gid=0
-const key = "1YMBkCqCi31xiVpWtSsw97YFMo0HwVE6N6hX3nv2fF-w";
-const sheet_name = "Sheet1";
+// Google Sheet key and name stored in .env file in root of repo
+const key = process.env.REACT_APP_SHEET_KEY;
+const sheet_name = process.env.REACT_APP_SHEET_NAME;
 const sheetUrl = `https://docs.google.com/spreadsheets/d/${key}/gviz/tq?tqx=out:csv&sheet=${sheet_name}`;
 
 export interface IDatum {
@@ -41,6 +41,6 @@ function row({ item, category, include }: DSVRowString<keyof IDatum>) {
 	return {
 		item: item || "missing item",
 		category: category || "missing category",
-		include: include === "TRUE" ? true : false,
+		include: include === "TRUE",
 	}
 }
