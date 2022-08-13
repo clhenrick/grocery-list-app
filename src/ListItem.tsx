@@ -10,7 +10,7 @@ export function ListItem({ item, id }: Props) {
 	return (
 		<div className={styles.ListItem}>
 			<input id={id} type="checkbox" />{' '}
-			<label htmlFor={id}>
+			<label className={styles.label} htmlFor={id}>
 				{item}
 			</label>
 		</div>

@@ -13,7 +13,7 @@ function sanitize(string: string) {
 
 export function List({ data }: Props) {
 
-	function renderItem({ item }:IDatum) {
+	function renderListItem({ item }:IDatum) {
 		const id = sanitize(item);
 		return (
 			<ListItem key={id} {...{id, item }} />
@@ -22,7 +22,7 @@ export function List({ data }: Props) {
 
 	return (
 		<div className={styles.List}>
-			{ data?.filter(d => d.include).map(renderItem) }
+			{ data?.filter(d => d.include).map(renderListItem) }
 		</div>
 	);
 }
