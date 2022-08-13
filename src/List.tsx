@@ -35,7 +35,7 @@ export function List({ data }: Props) {
 		<div className={styles.List}>
 			{ grouped.map(({ category, items }) => {
 				return (
-					<div>
+					<div key={category}>
 						<h2 className={styles.categoryHeading}>{category}</h2>
 						{items.map(renderListItem)}
 					</div>
