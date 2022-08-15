@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { fetchSheetData, IDatum } from './lib/data';
 import {List} from "./List";
+import {ThemeToggle} from "./ThemeToggle";
 
 function App() {
 	const [ data, setData ] = useState<IDatum[]|null>(null);
@@ -20,6 +21,7 @@ function App() {
     <div className="App">
       <header>
 				<h1>Grocery List</h1>
+				<ThemeToggle />
       </header>
 			<main>
 				{ data && <List data={data} />}

@@ -10,7 +10,7 @@
 }
 
 /*
-  Some of the follow styles taken from Josh's Custom CSS Reset:
+  Some of the following styles are taken from Josh's Custom CSS Reset:
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
@@ -42,6 +42,13 @@ body {
 	body {
 		color: var(--text-color-dark);
 		background-color: var(--bg-color-dark);
+		border-color: var(--border-color-dark);
+	}
+
+	body.light-theme {
+		color: var(--text-color);
+		background-color: var(--bg-color);
+		border-color: var(--border-color);
 	}
 }
 

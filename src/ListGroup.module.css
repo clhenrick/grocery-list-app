@@ -5,3 +5,7 @@
 .details {
 	margin-top: 2rem;
 }
+
+.details:first-of-type {
+	margin-top: 1rem;
+}
