@@ -1,5 +1,10 @@
 # Grocery List App
 
+<div style="display:flex; align-items:center;gap:2px">
+  <img width="375" height="667" src="./screenshots/grocery-list-app-light-theme.png">
+  <img width="375" height="667" src="./screenshots/grocery-list-app-dark-theme.png">
+</div>
+
 A simple mobile friendly app to take while grocery shopping, powered by Google Sheets & ReactJS.
 
 ## Customizing for Your Own Use
