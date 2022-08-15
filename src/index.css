@@ -1,5 +1,16 @@
+:root {
+	--text-color: #222;
+	--text-color-dark: #eee;
+
+	--bg-color: #fff;
+	--bg-color-dark: #121212;
+
+	--border-color: #888;
+	--border-color-dark: #444;
+}
+
 /*
-  Josh's Custom CSS Reset
+  Some of the follow styles taken from Josh's Custom CSS Reset:
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
@@ -20,9 +31,18 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 	font-size: 1.5rem;
+	color: var(--text-color);
+	background-color: var(--bg-color);
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		color: var(--text-color-dark);
+		background-color: var(--bg-color-dark);
+	}
 }
 
 img, picture, video, canvas, svg {
