@@ -7,9 +7,11 @@ const sheet_name = process.env.REACT_APP_SHEET_NAME;
 const sheetUrl = `https://docs.google.com/spreadsheets/d/${key}/gviz/tq?tqx=out:csv&sheet=${sheet_name}`;
 
 export interface IDatum {
+	id: number;
 	item: string;
 	category: string;
 	include: boolean;
+	checked: boolean;
 }
 
 export interface DataGrouped {
@@ -43,10 +45,12 @@ function parseText(text:string) : DSVParsedArray<IDatum> {
 	return csvParse(text, row);
 }
 
-function row({ item, category, include }: DSVRowString<keyof IDatum>) {
+function row({ item, category, include }: DSVRowString<keyof IDatum>, index: number) {
 	return {
+		id: index,
 		item: item || "missing item",
 		category: category || "missing category",
 		include: include === "TRUE",
+		checked: false,
 	}
 }
