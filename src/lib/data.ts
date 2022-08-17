@@ -19,9 +19,9 @@ export interface DataGrouped {
 	items: IDatum[];
 }
 
-export async function fetchSheetData() : Promise<[DSVParsedArray<IDatum>|null, Error|null]> {
+export async function fetchSheetData(signal: AbortSignal) : Promise<[DSVParsedArray<IDatum>|null, Error|null]> {
 	try {
-		const res = await window.fetch(sheetUrl);
+		const res = await window.fetch(sheetUrl, { signal: signal });
 		const text = await res.text();
 		const data = parseText(text);
 		return [data, null];
