@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./ListGroup.module.css";
 
 interface Props {
@@ -6,13 +6,13 @@ interface Props {
 	children?: React.ReactNode;
 }
 
-export function ListGroup({ category, children }: Props) {
+export const ListGroup = memo(({ category, children }: Props) => {
 	return (
-		<details key={category} className={styles.details} open>
+		<details className={styles.details} open>
 			<summary className={styles.categoryHeading}>
 				{category}
 			</summary>
 			{ children }
 		</details>
-	)
-}
+	);
+});

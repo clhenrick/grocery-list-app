@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./ListItem.module.css";
 import { sanitize } from "./lib/utils";
 
@@ -9,7 +9,7 @@ interface Props {
 	onChange: (id: number) => void;
 }
 
-export function ListItem({ item, id, checked, onChange }: Props) {
+export const ListItem = memo(({ item, id, checked, onChange }: Props) => {
 	const htmlId = sanitize(item);
 
 	return (
@@ -26,4 +26,4 @@ export function ListItem({ item, id, checked, onChange }: Props) {
 			</label>
 		</div>
 	)
-}
+});
