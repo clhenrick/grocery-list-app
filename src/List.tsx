@@ -3,12 +3,14 @@ import styles from "./List.module.css";
 import { IDatum } from "./lib/data";
 import { ListGroup } from "./ListGroup";
 import { groupData, DataGrouped } from "./lib/data"
+import { ListItem } from "./ListItem";
 
 interface Props {
 	data: IDatum[] | null;
+	handleChange: (i:number) => void;
 }
 
-export function List({ data }: Props) {
+export function List({ data, handleChange }: Props) {
 	const [grouped, setGrouped] = useState<DataGrouped[]>([]);
 
 	useEffect(() => {
@@ -23,7 +25,15 @@ export function List({ data }: Props) {
 		<div className={styles.List}>
 			{ grouped.map(({ category, items }) => {
 				return (
-					<ListGroup key={category} {...{category, items }} />
+					<ListGroup key={category} category={category}>
+						{ items.map(({ item, id, checked }) => (
+							<ListItem
+								key={id}
+								{...{item, id, checked }}
+								onChange={handleChange}
+							/>
+						))}
+					</ListGroup>
 				);
 			})}
 		</div>

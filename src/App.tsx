@@ -1,22 +1,22 @@
 import './App.css';
-import { useLoadData } from './hooks/use-load-data';
+import { useData } from './hooks/use-data';
 import {List} from "./List";
 import {ThemeToggle} from "./ThemeToggle";
 
 function App() {
-	const [data, error] = useLoadData();
+	const {data, error, updateData } = useData();
 
-	// TODO: function that handles updating list items to be checked / unchecked.
-	// function updateListItem(index: number) {
-	// 	if (!data) return;
-	// 	const datumCopy = { ...data[index] };
-	// 	datumCopy.checked = !datumCopy.checked;
-	// 	setData([
-	// 		...data.slice(0, index),
-	// 		datumCopy,
-	// 		...data.slice(index + 1)
-	// 	]);
-	// }
+	function updateListItem(index: number) {
+		if (data) {
+			const datumCopy = { ...data[index] };
+			datumCopy.checked = !datumCopy.checked;
+			updateData([
+				...data.slice(0, index),
+				datumCopy,
+				...data.slice(index + 1)
+			]);
+		}
+	}
 
   return (
     <div className="App">
@@ -25,7 +25,7 @@ function App() {
 				<ThemeToggle />
       </header>
 			<main>
-				{ data && <List data={data} />}
+				{ data && <List data={data} handleChange={updateListItem} />}
 				{ error && <p>{error.message}</p>}
 				{ !data && !error && <p>loading shopping list...</p>}
 			</main>

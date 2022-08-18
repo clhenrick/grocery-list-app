@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import { IDatum } from '../lib/data';
-import { getStorage } from '../lib/storage';
+import { getStorage, setStorage } from '../lib/storage';
 import { fetchSheetData } from '../lib/data';
 
 /**
- * useLoadData: handles fetching data from Google Sheets,
- * or loading saved data from the browser's LocalStorage API
- * @returns Array<data, error>
+ * useData:
+ * 	- handles fetching data from Google Sheets, or loading saved data
+ * 		from the browser's LocalStorage API.
+ *  - handles updating the data and storing it in LocalStorage
+ *
+ * @returns { data, error, updateData }
  */
-export const useLoadData = () => {
+export const useData = () => {
 	const [ data, setData ] = useState<IDatum[]|null>(null);
 	const [ error, setError ] = useState<Error|null>(null);
 
@@ -34,11 +37,20 @@ export const useLoadData = () => {
 			setError(new Error("Problem reading localStorage."));
 		}
 
-		// prevents the fetch call from being made multiple times
+		// clean up fn prevents the fetch call from being made multiple times
 		return () => {
 			controller.abort();
 		}
 	}, []);
 
-	return [data, error] as const;
+	const updateData = (updated: IDatum[]) => {
+		try {
+			setData(updated);
+			setStorage(updated);
+		} catch (error) {
+			setError(new Error("Problem saving to localStorage"));
+		}
+	}
+
+	return { data, error, updateData } as const;
 }
