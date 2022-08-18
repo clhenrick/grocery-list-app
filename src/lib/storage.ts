@@ -3,9 +3,15 @@ import { IDatum } from "./data";
 const key = "grocery-list";
 const storage = window.localStorage;
 
-export function setStorage(data: IDatum[]) {
+export function setStorage(data: IDatum[] | null) {
 	if (data) {
 		storage.setItem(key, JSON.stringify(data));
+	}
+}
+
+export function clearStorage() {
+	if (storage.getItem(key)) {
+		storage.removeItem(key);
 	}
 }
 
