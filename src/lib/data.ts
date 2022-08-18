@@ -26,6 +26,9 @@ export async function fetchSheetData(signal: AbortSignal) : Promise<[DSVParsedAr
 		const data = parseText(text);
 		return [data, null];
 	} catch (error: unknown) {
+		if (error instanceof Error && error.name === "AbortError") {
+			return [null, null];
+		}
 		return [null, new Error("Something went wrong.")];
 	}
 }
