@@ -1,30 +1,35 @@
-import React, { useEffect, useState } from 'react';
 import './App.css';
-import { fetchSheetData, IDatum } from './lib/data';
+import { useData } from './hooks/use-data';
 import {List} from "./List";
 import {ThemeToggle} from "./ThemeToggle";
+import {ResetButton} from "./ResetButton";
 
 function App() {
-	const [ data, setData ] = useState<IDatum[]|null>(null);
-	const [ error, setError ] = useState<Error|null>(null);
+	const {data, error, updateData, resetData } = useData();
 
-	useEffect(() => {
-		async function handleData() {
-			const [data, error] = await fetchSheetData();
-			setData(data);
-			setError(error);
+	function updateListItem(index: number) {
+		if (data) {
+			const datumCopy = { ...data[index] };
+			datumCopy.checked = !datumCopy.checked;
+			updateData([
+				...data.slice(0, index),
+				datumCopy,
+				...data.slice(index + 1)
+			]);
 		}
-		handleData();
-	}, []);
+	}
 
   return (
     <div className="App">
       <header>
 				<h1>Grocery List</h1>
-				<ThemeToggle />
+				<div className="options-menu">
+					<ThemeToggle />
+					<ResetButton onClick={resetData} />
+				</div>
       </header>
 			<main>
-				{ data && <List data={data} />}
+				{ data && <List data={data} handleChange={updateListItem} />}
 				{ error && <p>{error.message}</p>}
 				{ !data && !error && <p>loading shopping list...</p>}
 			</main>
