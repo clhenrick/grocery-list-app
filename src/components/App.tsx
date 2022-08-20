@@ -1,8 +1,7 @@
 import './App.css';
 import { useData } from '../hooks/use-data';
 import { List } from "./List";
-import { ThemeToggle } from "./ThemeToggle";
-import { ResetButton } from "./ResetButton";
+import { OptionsMenu } from "./OptionsMenu";
 
 function App() {
 	const {data, error, updateData, resetData } = useData();
@@ -23,10 +22,7 @@ function App() {
     <div className="App">
       <header>
 				<h1>Grocery List</h1>
-				<div className="options-menu">
-					<ThemeToggle />
-					<ResetButton onClick={resetData} />
-				</div>
+				<OptionsMenu onResetClick={resetData} />
       </header>
 			<main>
 				{ data && <List data={data} handleChange={updateListItem} />}
