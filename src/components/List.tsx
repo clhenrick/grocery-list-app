@@ -25,13 +25,15 @@ export function List({ data, handleChange }: Props) {
 			{ grouped.map(({ category, items }) => {
 				return (
 					<ListGroup key={category} category={category}>
-						{ items.map(({ item, id, checked }) => (
-							<ListItem
-								key={id}
-								{...{item, id, checked }}
-								onChange={handleChange}
-							/>
-						))}
+						<ul>
+							{ items.map(({ item, id, checked }) => (
+								<ListItem
+									key={id}
+									{...{item, id, checked }}
+									onChange={handleChange}
+								/>
+							))}
+						</ul>
 					</ListGroup>
 				);
 			})}

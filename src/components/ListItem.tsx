@@ -13,7 +13,7 @@ export const ListItem = memo(({ item, id, checked, onChange }: Props) => {
 	const htmlId = sanitize(item);
 
 	return (
-		<div className={styles.ListItem}>
+		<li className={styles.ListItem}>
 			<input
 				id={htmlId}
 				type="checkbox"
@@ -24,6 +24,6 @@ export const ListItem = memo(({ item, id, checked, onChange }: Props) => {
 			<label className={styles.label} htmlFor={htmlId}>
 				{item}
 			</label>
-		</div>
-	)
+		</li>
+	);
 });
