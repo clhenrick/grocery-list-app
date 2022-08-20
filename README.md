@@ -7,6 +7,13 @@
 
 A simple mobile friendly app to take while grocery shopping, powered by Google Sheets & ReactJS.
 
+## Features
+- Simple, mobile first layout and design.
+- Uses a single Google Sheet with a simple schema as a read-only "backend" / database.
+- Dark and Light themed user interface.
+- Persists shopping list state to `localStorage` (in case of an accidental page reload).
+- Can easily reset shopping list state (clears `localStorage` and re-fetches sheets data).
+
 ## Customizing for Your Own Use
 
 To personalize this app for yourself follow these steps after forking this repository:
