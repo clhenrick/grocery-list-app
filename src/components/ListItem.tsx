@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import styles from "./ListItem.module.css";
-import { sanitize } from "./lib/utils";
+import { sanitize } from "../lib/utils";
 
 interface Props {
 	id: number;
