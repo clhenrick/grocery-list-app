@@ -1,8 +1,8 @@
 import './App.css';
-import { useData } from './hooks/use-data';
-import {List} from "./List";
-import {ThemeToggle} from "./ThemeToggle";
-import {ResetButton} from "./ResetButton";
+import { useData } from '../hooks/use-data';
+import { List } from "./List";
+import { ThemeToggle } from "./ThemeToggle";
+import { ResetButton } from "./ResetButton";
 
 function App() {
 	const {data, error, updateData, resetData } = useData();

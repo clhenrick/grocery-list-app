@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./List.module.css";
-import { IDatum } from "./lib/data";
+import { IDatum, groupData, DataGrouped } from "../lib/data";
 import { ListGroup } from "./ListGroup";
-import { groupData, DataGrouped } from "./lib/data"
 import { ListItem } from "./ListItem";
 
 interface Props {
