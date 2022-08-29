@@ -27,10 +27,10 @@ export function List({ data, handleChange, filterIncluded }: Props) {
 				return (
 					<ListGroup key={category} category={category}>
 						<ul>
-							{ items.map(({ item, id, checked }) => (
+							{ items.map((d) => (
 								<ListItem
-									key={id}
-									{...{item, id, checked }}
+									key={d.id}
+									datum={d}
 									onChange={handleChange}
 								/>
 							))}
