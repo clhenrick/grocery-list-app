@@ -7,19 +7,17 @@ import { ListItem } from "./ListItem";
 interface Props {
 	data: IDatum[] | null;
 	handleChange: (i:number) => void;
-	filterIncluded: boolean;
 }
 
-export function List({ data, handleChange, filterIncluded }: Props) {
+export function List({ data, handleChange }: Props) {
 	const [grouped, setGrouped] = useState<DataGrouped[]>([]);
 
 	useEffect(() => {
 		if (data) {
-			const filtered = filterIncluded ? data.filter(d => d.include) : data.slice();
-			const grouped = groupData(filtered);
+			const grouped = groupData(data);
 			setGrouped(grouped);
 		}
-	}, [data, filterIncluded]);
+	}, [data]);
 
 	return (
 		<div className={styles.List}>

@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import './App.css';
 import { useData } from '../hooks/use-data';
 import { List } from "./List";
 import { OptionsMenu } from "./OptionsMenu";
 
 function App() {
-	const {data, error, updateData, resetData } = useData();
+	const { data: dataRaw, error, updateData, resetData } = useData();
 	const [ filterIncluded, setFilterIncluded ] = useState(true);
+	const data = useMemo(() =>
+		filterIncluded
+			? dataRaw?.filter(d => d.include)
+			: dataRaw,
+		[dataRaw, filterIncluded]
+	);
 
-	function updateListItem(index: number) {
-		if (data) {
-			const datumCopy = { ...data[index] };
-			datumCopy.checked = !datumCopy.checked;
+	function updateListItem(id: number) {
+		if (dataRaw) {
+			const index = dataRaw.findIndex(d => d.id === id);
+			if (index === -1) return;
+			const datum = dataRaw[index];
+			const datumUpdated = { ...datum, checked: !datum.checked };
 			updateData([
-				...data.slice(0, index),
-				datumCopy,
-				...data.slice(index + 1)
+				...dataRaw.slice(0, index),
+				datumUpdated,
+				...dataRaw.slice(index + 1)
 			]);
 		}
 	}
@@ -35,7 +43,6 @@ function App() {
 					<List
 						data={data}
 						handleChange={updateListItem}
-						filterIncluded={filterIncluded}
 					/>
 				}
 				{ error && <p>{error.message}</p>}
