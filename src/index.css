@@ -82,3 +82,10 @@ code {
 input:checked + label {
 	text-decoration: line-through;
 }
+
+button {
+	border: none;
+	background-color: transparent;
+	padding: 0;
+	color: var(--text-color);
+}
