@@ -3,13 +3,17 @@ import styles from "./ListItem.module.css";
 import { sanitize } from "../lib/utils";
 
 interface Props {
-  id: number;
-  item: string;
-  checked: boolean;
+  datum: {
+    id: number;
+    item: string;
+    checked: boolean;
+    include: boolean;
+  };
   onChange: (id: number) => void;
 }
 
-export const ListItem = memo(({ item, id, checked, onChange }: Props) => {
+export const ListItem = memo(({ datum, onChange }: Props) => {
+  const { item, id, checked, include } = datum;
   const htmlId = sanitize(item);
 
   return (
@@ -20,7 +24,10 @@ export const ListItem = memo(({ item, id, checked, onChange }: Props) => {
         checked={checked}
         onChange={() => onChange(id)}
       />{" "}
-      <label className={styles.label} htmlFor={htmlId}>
+      <label
+        className={include ? styles.label : styles["label-not-included"]}
+        htmlFor={htmlId}
+      >
         {item}
       </label>
     </li>

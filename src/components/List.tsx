@@ -3,6 +3,7 @@ import styles from "./List.module.css";
 import { IDatum, groupData, DataGrouped } from "../lib/data";
 import { ListGroup } from "./ListGroup";
 import { ListItem } from "./ListItem";
+import { MessageNoItemsIncluded } from "./MessageNoItemsIncluded";
 
 interface Props {
   data: IDatum[] | null;
@@ -14,11 +15,14 @@ export function List({ data, handleChange }: Props) {
 
   useEffect(() => {
     if (data) {
-      const filtered = data.filter((d) => d.include);
-      const grouped = groupData(filtered);
+      const grouped = groupData(data);
       setGrouped(grouped);
     }
   }, [data]);
+
+  if (Array.isArray(grouped) && !grouped.length) {
+    return <MessageNoItemsIncluded />;
+  }
 
   return (
     <div className={styles.List}>
@@ -26,12 +30,8 @@ export function List({ data, handleChange }: Props) {
         return (
           <ListGroup key={category} category={category}>
             <ul>
-              {items.map(({ item, id, checked }) => (
-                <ListItem
-                  key={id}
-                  {...{ item, id, checked }}
-                  onChange={handleChange}
-                />
+              {items.map((d) => (
+                <ListItem key={d.id} datum={d} onChange={handleChange} />
               ))}
             </ul>
           </ListGroup>

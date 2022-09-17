@@ -1,21 +1,27 @@
+import { useState, useMemo } from "react";
 import "./App.css";
 import { useData } from "../hooks/use-data";
 import { List } from "./List";
 import { OptionsMenu } from "./OptionsMenu";
 
 function App() {
-  const { data, error, updateData, resetData } = useData();
+  const { data: dataRaw, error, updateData, resetData } = useData();
+  const [filterIncluded, setFilterIncluded] = useState(true);
+  const data = useMemo(
+    () => (filterIncluded ? dataRaw?.filter((d) => d.include) : dataRaw),
+    [dataRaw, filterIncluded]
+  );
 
-  // Toggle's the list item's checked property in the raw data
-  // TODO: rename this to something more clear like toggleListItemChecked
-  function updateListItem(index: number) {
-    if (data) {
-      const datumCopy = { ...data[index] };
-      datumCopy.checked = !datumCopy.checked;
+  function toggleListItemChecked(id: number) {
+    if (dataRaw) {
+      const index = dataRaw.findIndex((d) => d.id === id);
+      if (index === -1) return;
+      const datum = dataRaw[index];
+      const datumUpdated = { ...datum, checked: !datum.checked };
       updateData([
-        ...data.slice(0, index),
-        datumCopy,
-        ...data.slice(index + 1),
+        ...dataRaw.slice(0, index),
+        datumUpdated,
+        ...dataRaw.slice(index + 1),
       ]);
     }
   }
@@ -24,10 +30,14 @@ function App() {
     <div className="App">
       <header>
         <h1>Grocery List</h1>
-        <OptionsMenu onResetClick={resetData} />
+        <OptionsMenu
+          onResetClick={resetData}
+          onToggleExcludedClick={() => setFilterIncluded(!filterIncluded)}
+          showExcludedItems={!filterIncluded}
+        />
       </header>
       <main>
-        {data && <List data={data} handleChange={updateListItem} />}
+        {data && <List data={data} handleChange={toggleListItemChecked} />}
         {error && <p>{error.message}</p>}
         {!data && !error && <p>loading shopping list...</p>}
       </main>
