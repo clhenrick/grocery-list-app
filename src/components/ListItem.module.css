@@ -1,19 +1,19 @@
 .ListItem {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	border-bottom-width: 2px;
-	border-bottom-style: solid;
-	border-bottom-color: var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-color);
 }
 
 .label {
-	padding: 1rem 0;
-	flex-grow: 2;
+  padding: 1rem 0;
+  flex-grow: 2;
 }
 
 .label-not-included {
-	composes: label;
-	opacity: 0.75;
-	font-style: italic;
+  composes: label;
+  opacity: 0.75;
+  font-style: italic;
 }

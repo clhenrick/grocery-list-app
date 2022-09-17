@@ -1,9 +1,9 @@
 .App {
-	padding: 2rem;
+  padding: 2rem;
 }
 
 .options-menu {
-	display: flex;
-	gap: 2rem;
-	align-items: center;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }

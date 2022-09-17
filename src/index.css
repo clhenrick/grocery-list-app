@@ -1,12 +1,12 @@
 :root {
-	--text-color-light: #222;
-	--text-color-dark: #eee;
+  --text-color-light: #222;
+  --text-color-dark: #eee;
 
-	--bg-color-light: #fff;
-	--bg-color-dark: #121212;
+  --bg-color-light: #fff;
+  --bg-color-dark: #121212;
 
-	--border-color-light: #888;
-	--border-color-dark: #444;
+  --border-color-light: #888;
+  --border-color-dark: #444;
 }
 
 /*
@@ -14,7 +14,9 @@
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -22,70 +24,85 @@
   margin: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
-	--text-color: var(--text-color-light);
-	--bg-color: var(--bg-color-light);
-	--border-color: var(--border-color-light);
+  --text-color: var(--text-color-light);
+  --bg-color: var(--bg-color-light);
+  --border-color: var(--border-color-light);
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-	font-size: 1.5rem;
-	color: var(--text-color);
-	background-color: var(--bg-color);
-	border-color: var(--border-color);
+  font-size: 1.5rem;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  border-color: var(--border-color);
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 @media (prefers-color-scheme: dark) {
-	body {
-		--text-color: var(--text-color-dark);
-		--bg-color: var(--bg-color-dark);
-		--border-color: var(--border-color-dark);
-	}
+  body {
+    --text-color: var(--text-color-dark);
+    --bg-color: var(--bg-color-dark);
+    --border-color: var(--border-color-dark);
+  }
 
-	body.light-theme {
-		--text-color: var(--text-color-light);
-		--bg-color: var(--bg-color-light);
-		--border-color: var(--border-color-light);
-	}
+  body.light-theme {
+    --text-color: var(--text-color-light);
+    --bg-color: var(--bg-color-light);
+    --border-color: var(--border-color-light);
+  }
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
 
-#root, #__next {
+#root,
+#__next {
   isolation: isolate;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 input:checked + label {
-	text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 button {
-	border: none;
-	background-color: transparent;
-	padding: 0;
-	color: var(--text-color);
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: var(--text-color);
 }
