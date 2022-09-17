@@ -6,6 +6,8 @@ import { OptionsMenu } from "./OptionsMenu";
 function App() {
   const { data, error, updateData, resetData } = useData();
 
+  // Toggle's the list item's checked property in the raw data
+  // TODO: rename this to something more clear like toggleListItemChecked
   function updateListItem(index: number) {
     if (data) {
       const datumCopy = { ...data[index] };
