@@ -12,7 +12,7 @@ function App() {
     [dataRaw, filterIncluded]
   );
 
-  function updateListItem(id: number) {
+  function toggleListItemChecked(id: number) {
     if (dataRaw) {
       const index = dataRaw.findIndex((d) => d.id === id);
       if (index === -1) return;
@@ -37,7 +37,7 @@ function App() {
         />
       </header>
       <main>
-        {data && <List data={data} handleChange={updateListItem} />}
+        {data && <List data={data} handleChange={toggleListItemChecked} />}
         {error && <p>{error.message}</p>}
         {!data && !error && <p>loading shopping list...</p>}
       </main>
