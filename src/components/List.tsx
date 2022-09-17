@@ -3,6 +3,7 @@ import styles from "./List.module.css";
 import { IDatum, groupData, DataGrouped } from "../lib/data";
 import { ListGroup } from "./ListGroup";
 import { ListItem } from "./ListItem";
+import { MessageNoItemsIncluded } from "./MessageNoItemsIncluded";
 
 interface Props {
 	data: IDatum[] | null;
@@ -18,6 +19,10 @@ export function List({ data, handleChange }: Props) {
 			setGrouped(grouped);
 		}
 	}, [data]);
+
+	if (Array.isArray(grouped) && !grouped.length) {
+		return <MessageNoItemsIncluded />;
+	}
 
 	return (
 		<div className={styles.List}>
