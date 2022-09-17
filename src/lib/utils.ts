@@ -1,3 +1,3 @@
 export function sanitize(string: string) {
-	return string.replace(/ /gi, '').toLowerCase();
+  return string.replace(/ /gi, "").toLowerCase();
 }
