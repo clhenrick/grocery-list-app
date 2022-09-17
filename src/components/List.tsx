@@ -5,38 +5,38 @@ import { ListGroup } from "./ListGroup";
 import { ListItem } from "./ListItem";
 
 interface Props {
-	data: IDatum[] | null;
-	handleChange: (i:number) => void;
+  data: IDatum[] | null;
+  handleChange: (i: number) => void;
 }
 
 export function List({ data, handleChange }: Props) {
-	const [grouped, setGrouped] = useState<DataGrouped[]>([]);
+  const [grouped, setGrouped] = useState<DataGrouped[]>([]);
 
-	useEffect(() => {
-		if (data) {
-			const filtered = data.filter(d => d.include);
-			const grouped = groupData(filtered);
-			setGrouped(grouped);
-		}
-	}, [data]);
+  useEffect(() => {
+    if (data) {
+      const filtered = data.filter((d) => d.include);
+      const grouped = groupData(filtered);
+      setGrouped(grouped);
+    }
+  }, [data]);
 
-	return (
-		<div className={styles.List}>
-			{ grouped.map(({ category, items }) => {
-				return (
-					<ListGroup key={category} category={category}>
-						<ul>
-							{ items.map(({ item, id, checked }) => (
-								<ListItem
-									key={id}
-									{...{item, id, checked }}
-									onChange={handleChange}
-								/>
-							))}
-						</ul>
-					</ListGroup>
-				);
-			})}
-		</div>
-	);
+  return (
+    <div className={styles.List}>
+      {grouped.map(({ category, items }) => {
+        return (
+          <ListGroup key={category} category={category}>
+            <ul>
+              {items.map(({ item, id, checked }) => (
+                <ListItem
+                  key={id}
+                  {...{ item, id, checked }}
+                  onChange={handleChange}
+                />
+              ))}
+            </ul>
+          </ListGroup>
+        );
+      })}
+    </div>
+  );
 }

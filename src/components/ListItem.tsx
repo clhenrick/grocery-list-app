@@ -3,27 +3,26 @@ import styles from "./ListItem.module.css";
 import { sanitize } from "../lib/utils";
 
 interface Props {
-	id: number;
-	item: string;
-	checked: boolean;
-	onChange: (id: number) => void;
+  id: number;
+  item: string;
+  checked: boolean;
+  onChange: (id: number) => void;
 }
 
 export const ListItem = memo(({ item, id, checked, onChange }: Props) => {
-	const htmlId = sanitize(item);
+  const htmlId = sanitize(item);
 
-	return (
-		<li className={styles.ListItem}>
-			<input
-				id={htmlId}
-				type="checkbox"
-				checked={checked}
-				onChange={() => onChange(id)}
-			/>
-			{' '}
-			<label className={styles.label} htmlFor={htmlId}>
-				{item}
-			</label>
-		</li>
-	);
+  return (
+    <li className={styles.ListItem}>
+      <input
+        id={htmlId}
+        type="checkbox"
+        checked={checked}
+        onChange={() => onChange(id)}
+      />{" "}
+      <label className={styles.label} htmlFor={htmlId}>
+        {item}
+      </label>
+    </li>
+  );
 });
