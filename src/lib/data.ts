@@ -10,6 +10,7 @@ export interface IDatum {
   id: number;
   item: string;
   category: string;
+  aisle: string;
   include: boolean;
   checked: boolean;
 }
@@ -36,7 +37,7 @@ export async function fetchSheetData(
 }
 
 export function groupData(data: IDatum[]): DataGrouped[] {
-  const grouped = group(data, (d) => d.category);
+  const grouped = group(data, (d) => d.aisle);
   return Array.from(grouped, ([category, items]) => ({
     category,
     items: sortItems(items),
@@ -54,12 +55,13 @@ function parseText(text: string): DSVParsedArray<IDatum> {
 }
 
 function row(
-  { item, category, include }: DSVRowString<keyof IDatum>,
+  { item, aisle, category, include }: DSVRowString<keyof IDatum>,
   index: number
 ) {
   return {
     id: index,
-    item: item || "missing item",
+    item: item || "missing item name",
+    aisle: aisle || "missing aisle",
     category: category || "missing category",
     include: include === "TRUE",
     checked: false,
