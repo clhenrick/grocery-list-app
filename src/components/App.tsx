@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import { useData } from "../hooks/use-data";
 import { List } from "./List";
 import { Menu } from "./Menu";
@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <header>
         <h1>Grocery List</h1>
         <button onClick={toggleMenuVisibility}>view menu</button>
