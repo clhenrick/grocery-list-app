@@ -1,9 +1,7 @@
-import { useEffect } from "react";
-
+import { useEffect, useRef } from "react";
 import { ResetButton } from "./ResetButton";
 import { ThemeToggle } from "./ThemeToggle";
 import { ToggleExcludedItems } from "./ToggleExcluded";
-
 import styles from "./Menu.module.css";
 
 interface MenuProps {
@@ -21,23 +19,32 @@ export function Menu({
   onToggleExcludedClick,
   showExcludedItems,
 }: MenuProps) {
+  const dialog = useRef<HTMLDialogElement>(null);
+
   useEffect(() => {
     // https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
     if (visible) {
       document.body.style.position = "fixed";
       document.body.style.top = `-${window.scrollY}px`;
+      dialog.current?.showModal();
     } else {
       const scrollY = document.body.style.top;
       document.body.style.position = "";
       document.body.style.top = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      dialog.current?.close();
     }
-  }, [visible]);
+  }, [visible, dialog]);
 
   return (
-    <div className={`${styles.Menu} ${visible ? styles.visible : ""}`}>
-      <button className={styles.MenuCloseBtn} onClick={onCloseClick}>
-        {"✕"}
+    <dialog ref={dialog} className={styles.Menu}>
+      <button
+        className={styles.MenuCloseBtn}
+        onClick={onCloseClick}
+        aria-label="Close dialog"
+        autoFocus={true}
+      >
+        <span aria-hidden={true}>{"✕"}</span>
       </button>
       <div className={styles.MenuItems}>
         <ResetButton onClick={onResetClick} />
@@ -47,6 +54,6 @@ export function Menu({
           showExcludedItems={showExcludedItems}
         />
       </div>
-    </div>
+    </dialog>
   );
 }
