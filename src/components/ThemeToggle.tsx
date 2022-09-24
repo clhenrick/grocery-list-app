@@ -41,10 +41,12 @@ export function ThemeToggle() {
     <button
       className={styles.ThemeToggle}
       onClick={handleClick}
-      aria-label={`Toggle dark theme`}
       aria-pressed={theme === Theme.DARK}
     >
-      {theme === Theme.LIGHT ? "🌞" : "🌙"}
+      <span className={styles.icon} aria-hidden="true">
+        {theme === Theme.LIGHT ? "🌞" : "🌙"}
+      </span>
+      {"Toggle theme colors"}
     </button>
   );
 }

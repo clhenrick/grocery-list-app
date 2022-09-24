@@ -1,24 +1,28 @@
 .Menu {
+  color: var(--text-color);
+  background-color: var(--bg-color);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 1rem;
+  left: 1rem;
   width: 100vw;
   height: 100vh;
   padding: 2rem;
-  background-color: var(--bg-color);
+  border: none;
 }
 
-.Menu.visible {
-  display: block;
+.MenuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .MenuCloseBtn {
-  float: right;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .MenuItems {
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
+  gap: 2rem;
+  margin-top: 2rem;
 }

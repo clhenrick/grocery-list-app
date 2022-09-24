@@ -38,14 +38,17 @@ export function Menu({
 
   return (
     <dialog ref={dialog} className={styles.Menu}>
-      <button
-        className={styles.MenuCloseBtn}
-        onClick={onCloseClick}
-        aria-label="Close dialog"
-        autoFocus={true}
-      >
-        <span aria-hidden={true}>{"✕"}</span>
-      </button>
+      <div className={styles.MenuHeader}>
+        <h2>Options</h2>
+        <button
+          className={styles.MenuCloseBtn}
+          onClick={onCloseClick}
+          aria-label="Close dialog"
+          autoFocus={true}
+        >
+          <span aria-hidden={true}>{"✕"}</span>
+        </button>
+      </div>
       <div className={styles.MenuItems}>
         <ResetButton onClick={onResetClick} />
         <ThemeToggle />

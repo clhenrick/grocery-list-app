@@ -10,7 +10,10 @@ export const ToggleExcludedItems = memo(
   ({ showExcludedItems, onClick }: Props) => {
     return (
       <button className={styles.ToggleExcluded} onClick={onClick}>
-        {showExcludedItems ? "⚅" : "⚀"}
+        <span aria-hidden="true" className={styles.icon}>
+          {showExcludedItems ? "⚅" : "⚀"}
+        </span>
+        {`${showExcludedItems ? "Hide" : "Show"} excluded items`}
       </button>
     );
   }

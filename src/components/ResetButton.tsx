@@ -23,12 +23,11 @@ export const ResetButton = memo(({ onClick }: Props) => {
   }, [verified, onClick]);
 
   return (
-    <button
-      className={styles.ResetButton}
-      onClick={handleClick}
-      aria-label="reset grocery list"
-    >
-      {"🔄"}
+    <button className={styles.ResetButton} onClick={handleClick}>
+      <span className={styles.icon} aria-hidden="true">
+        {"🔄 "}
+      </span>
+      {"Refresh grocery list"}
     </button>
   );
 });
