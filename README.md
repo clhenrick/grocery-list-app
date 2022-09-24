@@ -18,7 +18,7 @@ A simple mobile friendly app to take while grocery shopping, powered by Google S
 
 To personalize this app for yourself follow these steps after forking this repository:
 
-1. Create a Google Sheet with the fields "items", "category", and "include". Make sure to set the values of the "include" field to be a checkbox which evaluates to "TRUE" or "FALSE" when checked or unchecked. This determines whether or not an item will display in the app.
+1. Create a Google Sheet with the fields "items", "aisle", and "include". Make sure to set the values of the "include" field to be a checkbox which evaluates to "TRUE" or "FALSE" when checked or unchecked. This determines whether or not an item will display in the app.
 
 2. After adding your grocery items and categories as rows, make the sheet public by clicking the "Share" button in the upper right and then setting "General Access" to "Anyone with the link".
 

@@ -26,9 +26,9 @@ export function List({ data, handleChange }: Props) {
 
   return (
     <div className={styles.List}>
-      {grouped.map(({ category, items }) => {
+      {grouped.map(({ aisle, items }) => {
         return (
-          <ListGroup key={category} category={category}>
+          <ListGroup key={aisle} aisle={aisle}>
             <ul>
               {items.map((d) => (
                 <ListItem key={d.id} datum={d} onChange={handleChange} />

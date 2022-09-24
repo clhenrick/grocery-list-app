@@ -16,7 +16,7 @@ export interface IDatum {
 }
 
 export interface DataGrouped {
-  category: string;
+  aisle: string;
   items: IDatum[];
 }
 
@@ -38,8 +38,8 @@ export async function fetchSheetData(
 
 export function groupData(data: IDatum[]): DataGrouped[] {
   const grouped = group(data, (d) => d.aisle);
-  return Array.from(grouped, ([category, items]) => ({
-    category,
+  return Array.from(grouped, ([aisle, items]) => ({
+    aisle,
     items: sortItems(items),
   }));
 }
