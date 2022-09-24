@@ -14,10 +14,12 @@
 }
 
 .MenuCloseBtn {
+  float: right;
   font-size: 3rem;
 }
 
 .MenuItems {
   display: flex;
   flex-direction: column;
+  margin-top: 5rem;
 }
