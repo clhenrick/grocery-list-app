@@ -1,6 +1,7 @@
 .Menu {
   color: var(--text-color);
   background-color: var(--bg-color);
+  /* TODO: make dialog expand to entire width of screen? */
   position: absolute;
   top: 1rem;
   left: 1rem;

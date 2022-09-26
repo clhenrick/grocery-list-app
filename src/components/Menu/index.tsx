@@ -50,6 +50,7 @@ export function Menu({
         </button>
       </div>
       <div className={styles.MenuItems}>
+        {/** TODO: buttons could share similar code? */}
         <ResetButton onClick={onResetClick} />
         <ThemeToggle />
         <ToggleExcludedItems
