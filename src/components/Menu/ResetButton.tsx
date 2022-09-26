@@ -28,7 +28,10 @@ export const ResetButton = memo(({ onClick }: Props) => {
       className={`${styles.ResetButton} ${stylesShared["menu-item-button"]}`}
       onClick={handleClick}
     >
-      <span className={styles.icon} aria-hidden="true">
+      <span
+        className={stylesShared["menu-item-button--icon"]}
+        aria-hidden="true"
+      >
         {"🔄 "}
       </span>
       {"Refresh grocery list"}
