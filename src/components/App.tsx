@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import styles from "./App.module.css";
 import { useData } from "../hooks/use-data";
 import { List } from "./List";
@@ -14,7 +14,7 @@ function App() {
     [dataRaw, filterIncluded]
   );
 
-  function toggleListItemChecked(id: number) {
+  const toggleListItemChecked = useCallback((id: number) => {
     if (dataRaw) {
       const index = dataRaw.findIndex((d) => d.id === id);
       if (index === -1) return;
@@ -26,7 +26,7 @@ function App() {
         ...dataRaw.slice(index + 1),
       ]);
     }
-  }
+  }, []);
 
   function toggleMenuVisibility() {
     setMenuVisible(!menuVisible);
