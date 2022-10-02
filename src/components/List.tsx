@@ -37,11 +37,14 @@ export function List({ data, handleChange, preventFocus }: Props) {
       {grouped.map(({ aisle, items }) => {
         return (
           <ListGroup key={aisle} aisle={aisle}>
-            <ul>
-              {items.map((d) => (
-                <ListItem key={d.id} datum={d} onChange={handleChange} />
-              ))}
-            </ul>
+            {items.map((d, i) => (
+              <ListItem
+                key={d.id}
+                index={i}
+                datum={d}
+                onChange={handleChange}
+              />
+            ))}
           </ListGroup>
         );
       })}
