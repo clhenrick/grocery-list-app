@@ -43,14 +43,20 @@ export function Menu({
         <h2>Options</h2>
         <CloseButton onClick={onCloseClick} />
       </div>
-      <div className={styles.MenuItems}>
-        <ResetButton onClick={onResetClick} />
-        <ThemeToggle />
-        <ToggleExcludedItems
-          onClick={onToggleExcludedClick}
-          showExcludedItems={showExcludedItems}
-        />
-      </div>
+      <ul className={styles.MenuItems}>
+        <li>
+          <ResetButton onClick={onResetClick} />
+        </li>
+        <li>
+          <ThemeToggle />
+        </li>
+        <li>
+          <ToggleExcludedItems
+            onClick={onToggleExcludedClick}
+            showExcludedItems={showExcludedItems}
+          />
+        </li>
+      </ul>
     </dialog>
   );
 }
