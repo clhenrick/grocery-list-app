@@ -44,7 +44,6 @@ export function Menu({
         <CloseButton onClick={onCloseClick} />
       </div>
       <div className={styles.MenuItems}>
-        {/** TODO: buttons could share similar code? */}
         <ResetButton onClick={onResetClick} />
         <ThemeToggle />
         <ToggleExcludedItems
