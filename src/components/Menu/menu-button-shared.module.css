@@ -1,0 +1,14 @@
+.menu-item-button {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 1rem;
+  font-size: 1.2rem;
+  border: 2px solid var(--border-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.menu-item-button--icon {
+  font-size: 2rem;
+}

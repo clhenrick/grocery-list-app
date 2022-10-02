@@ -1,0 +1,33 @@
+.Menu {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  /* TODO: make dialog expand to entire width of screen? */
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+  border: none;
+}
+
+.MenuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MenuItems,
+.MenuItems li,
+.MenuItems button {
+  width: 100%;
+}
+
+.MenuItems {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+}

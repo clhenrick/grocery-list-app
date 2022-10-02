@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import styles from "./ThemeToggle.module.css";
+import { useState, useEffect } from "react";
+import stylesShared from "./menu-button-shared.module.css";
 
 const enum Theme {
   LIGHT = "light",
@@ -39,12 +39,17 @@ export function ThemeToggle() {
 
   return (
     <button
-      className={styles.ThemeToggle}
+      className={stylesShared["menu-item-button"]}
       onClick={handleClick}
-      aria-label={`Toggle dark theme`}
       aria-pressed={theme === Theme.DARK}
     >
-      {theme === Theme.LIGHT ? "🌞" : "🌙"}
+      <span
+        className={stylesShared["menu-item-button--icon"]}
+        aria-hidden="true"
+      >
+        {theme === Theme.LIGHT ? "🌞" : "🌙"}
+      </span>
+      {"Toggle theme colors"}
     </button>
   );
 }
