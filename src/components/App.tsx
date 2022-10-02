@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 import { useData } from "../hooks/use-data";
 import { List } from "./List";
 import { Menu } from "./Menu";
+import { MenuToggleBtn } from "./MenuToggleBtn";
 
 function App() {
   const { data: dataRaw, error, updateData, resetData } = useData();
@@ -35,7 +36,7 @@ function App() {
     <div className={styles.App}>
       <header>
         <h1>Grocery List</h1>
-        <button onClick={toggleMenuVisibility}>view menu</button>
+        <MenuToggleBtn onClick={toggleMenuVisibility} expanded={menuVisible} />
       </header>
       <Menu
         visible={menuVisible}
