@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { CloseButton } from "./CloseButton";
 import { ResetButton } from "./ResetButton";
 import { ThemeToggle } from "./ThemeToggle";
 import { ToggleExcludedItems } from "./ToggleExcluded";
@@ -40,14 +41,7 @@ export function Menu({
     <dialog ref={dialog} className={styles.Menu}>
       <div className={styles.MenuHeader}>
         <h2>Options</h2>
-        <button
-          className={styles.MenuCloseBtn}
-          onClick={onCloseClick}
-          aria-label="Close dialog"
-          autoFocus={true}
-        >
-          <span aria-hidden={true}>{"✕"}</span>
-        </button>
+        <CloseButton onClick={onCloseClick} />
       </div>
       <div className={styles.MenuItems}>
         {/** TODO: buttons could share similar code? */}
