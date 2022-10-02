@@ -17,6 +17,12 @@
   justify-content: space-between;
 }
 
+.MenuItems,
+.MenuItems li,
+.MenuItems button {
+  width: 100%;
+}
+
 .MenuItems {
   display: flex;
   flex-direction: column;
@@ -24,14 +30,4 @@
   margin-top: 2rem;
   list-style: none;
   padding: 0;
-  width: 100%;
-}
-
-.MenuItems li {
-  display: inline-block;
-  width: 100%;
-}
-
-.MenuItems button {
-  width: 100%;
 }
