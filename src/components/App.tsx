@@ -46,7 +46,13 @@ function App() {
         showExcludedItems={!filterIncluded}
       />
       <main>
-        {data && <List data={data} handleChange={toggleListItemChecked} />}
+        {data && (
+          <List
+            data={data}
+            handleChange={toggleListItemChecked}
+            preventFocus={menuVisible}
+          />
+        )}
         {error && <p>{error.message}</p>}
         {!data && !error && <p>loading shopping list...</p>}
       </main>
