@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import styles from "./ThemeToggle.module.css";
+import { useState, useEffect } from "react";
 import stylesShared from "./menu-button-shared.module.css";
 
 const enum Theme {
@@ -40,7 +39,7 @@ export function ThemeToggle() {
 
   return (
     <button
-      className={`${styles.ResetButton} ${stylesShared["menu-item-button"]}`}
+      className={stylesShared["menu-item-button"]}
       onClick={handleClick}
       aria-pressed={theme === Theme.DARK}
     >
