@@ -15,11 +15,16 @@ interface Props {
 export const ListGroup = memo(({ aisle, children }: Props) => {
   const inputsRef = useRef<HTMLInputElement[]>([]);
 
-  // useEffect(() => {
-  //   console.log(inputsRef.current);
-  // }, [inputsRef]);
+  const handleTabIndex = (index: number, value: 0 | -1) => {
+    if (inputsRef.current[index]) {
+      inputsRef.current[index].tabIndex = value;
+    }
+  };
 
-  const focusInput = (index: number) => inputsRef.current?.[index]?.focus();
+  const focusInput = (index: number) => {
+    inputsRef.current?.[index]?.focus();
+    handleTabIndex(index, 0);
+  };
 
   const getIndex = () =>
     inputsRef.current.findIndex(
@@ -29,21 +34,25 @@ export const ListGroup = memo(({ aisle, children }: Props) => {
     );
 
   const focusNext = () => {
-    const index = getIndex() + 1;
-    if (inputsRef.current[index]) {
-      focusInput(index);
+    const index = getIndex();
+    const nexIndex = index + 1;
+    if (inputsRef.current[nexIndex]) {
+      focusInput(nexIndex);
     } else {
       focusFirst();
     }
+    handleTabIndex(index, -1);
   };
 
   const focusPrev = () => {
-    const index = getIndex() - 1;
-    if (inputsRef.current[index]) {
-      focusInput(index);
+    const index = getIndex();
+    const prevIndex = index - 1;
+    if (inputsRef.current[prevIndex]) {
+      focusInput(prevIndex);
     } else {
       focusLast();
     }
+    handleTabIndex(index, -1);
   };
 
   const focusFirst = () => {

@@ -16,11 +16,9 @@ interface Props {
 type Ref = HTMLInputElement;
 
 export const ListItem = memo(
-  forwardRef<Ref, Props>(({ datum, onChange }, ref) => {
+  forwardRef<Ref, Props>(({ datum, onChange, index }, ref) => {
     const { item, id, checked, include } = datum;
     const htmlId = sanitize(item);
-
-    console.log("ListItem render");
 
     return (
       <li className={styles.ListItem}>
@@ -30,6 +28,7 @@ export const ListItem = memo(
           data-id={id}
           type="checkbox"
           checked={checked}
+          tabIndex={index === 0 ? 0 : -1}
           onChange={() => onChange(id)}
         />{" "}
         <label
