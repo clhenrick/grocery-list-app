@@ -15,29 +15,73 @@ interface Props {
 export const ListGroup = memo(({ aisle, children }: Props) => {
   const inputsRef = useRef<HTMLInputElement[]>([]);
 
-  useEffect(() => {
-    console.log(inputsRef.current);
-  }, [inputsRef]);
+  // useEffect(() => {
+  //   console.log(inputsRef.current);
+  // }, [inputsRef]);
 
-  const handleKeydown = (event: KeyboardEvent<HTMLUListElement>) => {
-    console.log(event.key);
+  const focusInput = (index: number) => inputsRef.current?.[index]?.focus();
+
+  const getIndex = () =>
+    inputsRef.current.findIndex(
+      (el: HTMLInputElement) =>
+        el.dataset.id ===
+        (document.activeElement as HTMLInputElement)?.dataset?.id
+    );
+
+  const focusNext = () => {
+    const index = getIndex() + 1;
+    if (inputsRef.current[index]) {
+      focusInput(index);
+    } else {
+      focusFirst();
+    }
+  };
+
+  const focusPrev = () => {
+    const index = getIndex() - 1;
+    if (inputsRef.current[index]) {
+      focusInput(index);
+    } else {
+      focusLast();
+    }
+  };
+
+  const focusFirst = () => {
+    focusInput(0);
+  };
+
+  const focusLast = () => {
+    focusInput(inputsRef.current.length - 1);
+  };
+
+  function handleKeydown(event: KeyboardEvent<HTMLUListElement>) {
     let flag = false;
-
     switch (event.key) {
       case "ArrowDown":
-        // focus next
+      case "ArrowRight":
+        focusNext();
+        flag = true;
         break;
       case "ArrowUp":
-        // focus prev
+      case "ArrowLeft":
+        focusPrev();
+        flag = true;
+        break;
+      case "Home":
+        focusFirst();
+        flag = true;
+        break;
+      case "End":
+        focusLast();
+        flag = true;
         break;
       default:
         break;
     }
-
     if (flag) {
       event.preventDefault();
     }
-  };
+  }
 
   return (
     <details className={styles.details} open>

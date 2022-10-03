@@ -27,6 +27,7 @@ export const ListItem = memo(
         <input
           ref={ref}
           id={htmlId}
+          data-id={id}
           type="checkbox"
           checked={checked}
           onChange={() => onChange(id)}
