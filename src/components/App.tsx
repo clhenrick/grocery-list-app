@@ -14,19 +14,22 @@ function App() {
     [dataRaw, filterIncluded]
   );
 
-  const toggleListItemChecked = useCallback((id: number) => {
-    if (dataRaw) {
-      const index = dataRaw.findIndex((d) => d.id === id);
-      if (index === -1) return;
-      const datum = dataRaw[index];
-      const datumUpdated = { ...datum, checked: !datum.checked };
-      updateData([
-        ...dataRaw.slice(0, index),
-        datumUpdated,
-        ...dataRaw.slice(index + 1),
-      ]);
-    }
-  }, []);
+  const toggleListItemChecked = useCallback(
+    (id: number) => {
+      if (dataRaw) {
+        const index = dataRaw.findIndex((d) => d.id === id);
+        if (index === -1) return;
+        const datum = dataRaw[index];
+        const datumUpdated = { ...datum, checked: !datum.checked };
+        updateData([
+          ...dataRaw.slice(0, index),
+          datumUpdated,
+          ...dataRaw.slice(index + 1),
+        ]);
+      }
+    },
+    [dataRaw]
+  );
 
   function toggleMenuVisibility() {
     setMenuVisible(!menuVisible);
