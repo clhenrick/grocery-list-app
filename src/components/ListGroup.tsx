@@ -1,6 +1,7 @@
 import React, { memo, ReactElement } from "react";
 import styles from "./ListGroup.module.css";
 import { useRovingTabIndex } from "../hooks/use-roving-tab-index";
+import { ListItem } from "./ListItem";
 
 interface Props {
   aisle: string;
@@ -21,11 +22,14 @@ export const ListGroup = memo(({ aisle, children }: Props) => {
         {React.Children.map(
           children as JSX.Element,
           (child: ReactElement<any>, index) => {
-            return React.cloneElement(child, {
-              ref: (ref: HTMLElement) => setFocusTargetRef(ref, index),
-              tabIndex: getTabIndex(index),
-              onKeyDown: handleKeyDown,
-            });
+            if (child.type === ListItem) {
+              return React.cloneElement(child, {
+                ref: (ref: HTMLElement) => setFocusTargetRef(ref, index),
+                tabIndex: getTabIndex(index),
+                onKeyDown: handleKeyDown,
+              });
+            }
+            return child;
           }
         )}
       </ul>
