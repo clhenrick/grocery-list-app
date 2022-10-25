@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import styles from "./List.module.css";
 import { IDatum, groupData, DataGrouped } from "../lib/data";
 import { ListGroup } from "./ListGroup";
@@ -11,11 +11,12 @@ interface Props {
   preventFocus: boolean;
 }
 
-export function List({ data, handleChange, preventFocus }: Props) {
+export const List = memo(({ data, handleChange, preventFocus }: Props) => {
   const [grouped, setGrouped] = useState<DataGrouped[]>([]);
 
   useEffect(() => {
     if (data) {
+      // FIXME: causes all ListItems to re-render each time an item is (un)checked
       const grouped = groupData(data);
       setGrouped(grouped);
     }
@@ -37,14 +38,17 @@ export function List({ data, handleChange, preventFocus }: Props) {
       {grouped.map(({ aisle, items }) => {
         return (
           <ListGroup key={aisle} aisle={aisle}>
-            <ul>
-              {items.map((d) => (
-                <ListItem key={d.id} datum={d} onChange={handleChange} />
-              ))}
-            </ul>
+            {items.map((d, i) => (
+              <ListItem
+                key={d.id}
+                index={i}
+                datum={d}
+                onChange={handleChange}
+              />
+            ))}
           </ListGroup>
         );
       })}
     </div>
   );
-}
+});
