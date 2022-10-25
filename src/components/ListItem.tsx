@@ -13,6 +13,7 @@ export interface Props {
   onChange: (id: number) => void;
   tabIndex?: number;
   onKeyDown?: (event: KeyboardEvent, index: number) => void;
+  ref?: (ref: HTMLElement) => void;
 }
 
 type Ref = HTMLInputElement;
